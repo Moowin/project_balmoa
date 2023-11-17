@@ -1,10 +1,11 @@
 import React from 'react'
 
-const SequrityPage = () => {
+const Login = () => {
   return (
     <div>
-      
+      <p>asdfas</p>
     </div>
   )
 }
-export default SequrityPage
+
+export default Login
