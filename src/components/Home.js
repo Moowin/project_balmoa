@@ -1,26 +1,17 @@
 import React from 'react'
-import { AppBar, Toolbar, IconButton, Typography, Container, Button } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Container} from '@mui/material';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import SecurityIcon from '@mui/icons-material/Security';
 import TimeTable from './TimeTable';
-import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-    const goPage = useNavigate();
-    const goToSequrity = () => {
-        goPage('/SequrityPage');
-    }
     return (
         <div>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton edge="start" color="inherit" aria-label="menu">
                         <AddCircleIcon />
-                    </IconButton>
-                    <IconButton color = "inherit" onClick={goToSequrity}>
-                        <SecurityIcon/>
                     </IconButton>
                     <Typography variant="h6" style={{ flexGrow: 1, textAlign:'center', fontWeight:'bold' }}>
                     발모아

@@ -1,157 +1,92 @@
-import React from 'react';
-import { Paper, Table, TableContainer, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
-import { AppBar, Toolbar, IconButton, Typography, Container, Button } from '@mui/material';
-import CameraAltIcon from '@mui/icons-material/CameraAlt';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
-
-const data = [
-  { department: '컴퓨터공학과', name: '홍길동', phoneNumber: '010-1234-5678', usageTime: '9:00~22:00', studentNumber: '20210001', remark: '비고1' },
-  { department: '전자공학과', name: '이순신', phoneNumber: '010-5678-1234', usageTime: '9:00~22:00', studentNumber: '20210002', remark: '비고2' },
-  // ... 다른 데이터 추가
-];
+import React, { useState } from 'react';
+import { Paper, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import { AppBar, Toolbar, Typography, Container } from '@mui/material';
 
 const SequrityPage = () => {
+  const times = [
+    '09:00~10:00', '10:00~11:00', '11:00~12:00', '12:00~13:00',
+    '13:00~14:00', '14:00~15:00', '15:00~16:00', '16:00~17:00',
+    '17:00~18:00', '18:00~19:00', '19:00~20:00', '20:00~21:00',
+    '21:00~22:00'
+  ];
+
+  // 예약자 정보
+  const reservationData = [
+    { department: '스마트소프트웨어학과', name: '김민우', phoneNumber: '010-5059-4036', reservTime: '18:00~19:00', studentNumber: '21960009', image: '링크 또는 이미지 데이터' },
+    // 다른 예약자 정보들...
+  ];
+
+  // 선택된 예약자의 정보 및 모달 상태
+  const [selectedReservation, setSelectedReservation] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
+
+  // 자물쇠 확인 버튼 클릭 시 모달 열기
+  const handleLockClick = (reservation) => {
+    setSelectedReservation(reservation);
+    setOpenModal(true);
+  };
+
+  // 모달 닫기
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <div>
-        <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu">
-                        <AddCircleIcon />
-                    </IconButton>
-                    {/* <IconButton color = "inherit" onClick={goToSequrity}>
-                        <SecurityIcon/>
-                    </IconButton> */}
-                    <Typography variant="h6" style={{ flexGrow: 1, textAlign:'center', fontWeight:'bold' }}>
-                    발모아
-                    </Typography>
-                    <IconButton color = "inherit">
-                        <CameraAltIcon/>
-                    </IconButton>
-                    <IconButton color="inherit">
-                        <AccountCircleIcon />
-                    </IconButton>
-                </Toolbar>
-        </AppBar>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" style={{ flexGrow: 1, textAlign: 'center', fontWeight: 'bold' }}>
+            풋살장 예약 관리
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Container style={{}}>
         <TableContainer component={Paper}>
-            <Table>
-                <TableHead>
-                <TableRow>
-                    <TableCell>사용부서</TableCell>
-                    <TableCell>이름</TableCell>
-                    <TableCell>전화번호</TableCell>
-                    <TableCell>사용시간</TableCell>
-                    <TableCell>학번</TableCell>
-                    <TableCell>자물쇠 확인</TableCell>
-                </TableRow>
-                </TableHead>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>09:00~10:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>10:00~11:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>11:00~12:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>12:00~13:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>13:00~14:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>14:00~15:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>15:00~16:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>16:00~17:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>17:00~18:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>18:00~19:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>19:00~20:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>20:00~21:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-                <TableBody>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>21:00~22:00</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                </TableBody>
-            </Table>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>학과</TableCell>
+                <TableCell>이름</TableCell>
+                <TableCell>전화번호</TableCell>
+                <TableCell>시간</TableCell>
+                <TableCell>학번</TableCell>
+                <TableCell>자물쇠 확인</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {times.map((time, index) => {
+                // 예약한 사용자 찾기
+                const reservedUser = reservationData.find(user => user.reservTime === time);
+
+                return (
+                  <TableRow key={index}>
+                    <TableCell>{reservedUser?.department}</TableCell>
+                    <TableCell>{reservedUser?.name}</TableCell>
+                    <TableCell>{reservedUser?.phoneNumber}</TableCell>
+                    <TableCell>{time}</TableCell>
+                    <TableCell>{reservedUser?.studentNumber}</TableCell>
+                    <TableCell>
+                      <Button onClick={() => handleLockClick(reservedUser)}>
+                        자물쇠 확인
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
         </TableContainer>
+      </Container>
+
+      <Dialog open={openModal} onClose={handleCloseModal}>
+        <DialogTitle>자물쇠 확인</DialogTitle>
+        <DialogContent>
+          <img src={selectedReservation?.image} alt="자물쇠 확인" style={{ maxWidth: '100%' }} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModal}>닫기</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

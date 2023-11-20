@@ -8,9 +8,9 @@ import SignUp from './components/SignUp';
 function App() {
   return (
     <Routes>
-
+      <Route path="/" element={<Login />} />
       <Route path="/SignUp" elements={<SignUp />} />
-      <Route path="/" element={<Home />} />
+      <Route path="/Home" element={<Home />} />
       <Route path="/SequrityPage" element={<SequrityPage />} />
     </Routes>
   );
